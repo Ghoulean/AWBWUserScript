@@ -3,9 +3,9 @@
 function main() {
     //const historical_location_map: LocationToUnitIdMap = {};
 
-    console.log("hi!");
+    console.log("hi!")
 }
 
-window.addEventListener("load", main);
+window.addEventListener("load", main)
 
 main()

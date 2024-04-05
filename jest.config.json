@@ -1,0 +1,7 @@
+{
+    "clearMocks": true,
+    "collectCoverage": false,
+    "moduleNameMapper": {
+        "src/(.*)": "<rootDir>/src/$1"
+    }
+}

@@ -27,7 +27,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Mech]: {
         [UnitType.Infantry]: 0,
@@ -54,7 +54,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Recon]: {
         [UnitType.Infantry]: 0,
@@ -81,7 +81,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.APC]: {
         [UnitType.Infantry]: 0,
@@ -108,7 +108,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Artillery]: {
         [UnitType.Infantry]: 90,
@@ -135,7 +135,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 65,
         [UnitType.Submarine]: 60,
         [UnitType.Battleship]: 40,
-        [UnitType.Carrier]: 45
+        [UnitType.Carrier]: 45,
     },
     [UnitType.Tank]: {
         [UnitType.Infantry]: 0,
@@ -162,7 +162,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 5,
         [UnitType.Submarine]: 1,
         [UnitType.Battleship]: 1,
-        [UnitType.Carrier]: 1
+        [UnitType.Carrier]: 1,
     },
     [UnitType.Antiair]: {
         [UnitType.Infantry]: 105,
@@ -189,7 +189,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Missile]: {
         [UnitType.Infantry]: 0,
@@ -216,7 +216,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Rocket]: {
         [UnitType.Infantry]: 95,
@@ -243,7 +243,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 85,
         [UnitType.Submarine]: 85,
         [UnitType.Battleship]: 55,
-        [UnitType.Carrier]: 60
+        [UnitType.Carrier]: 60,
     },
     [UnitType.MdTank]: {
         [UnitType.Infantry]: 0,
@@ -270,7 +270,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 45,
         [UnitType.Submarine]: 10,
         [UnitType.Battleship]: 10,
-        [UnitType.Carrier]: 10
+        [UnitType.Carrier]: 10,
     },
     [UnitType.Piperunner]: {
         [UnitType.Infantry]: 95,
@@ -297,7 +297,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 85,
         [UnitType.Submarine]: 85,
         [UnitType.Battleship]: 55,
-        [UnitType.Carrier]: 60
+        [UnitType.Carrier]: 60,
     },
     [UnitType.Neotank]: {
         [UnitType.Infantry]: 0,
@@ -324,7 +324,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 50,
         [UnitType.Submarine]: 15,
         [UnitType.Battleship]: 15,
-        [UnitType.Carrier]: 15
+        [UnitType.Carrier]: 15,
     },
     [UnitType.MegaTank]: {
         [UnitType.Infantry]: 0,
@@ -351,7 +351,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 65,
         [UnitType.Submarine]: 45,
         [UnitType.Battleship]: 45,
-        [UnitType.Carrier]: 45
+        [UnitType.Carrier]: 45,
     },
     [UnitType.TCopter]: {
         [UnitType.Infantry]: 0,
@@ -378,7 +378,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.BCopter]: {
         [UnitType.Infantry]: 0,
@@ -405,7 +405,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 55,
         [UnitType.Submarine]: 25,
         [UnitType.Battleship]: 25,
-        [UnitType.Carrier]: 25
+        [UnitType.Carrier]: 25,
     },
     [UnitType.Fighter]: {
         [UnitType.Infantry]: 0,
@@ -432,7 +432,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Bomber]: {
         [UnitType.Infantry]: 110,
@@ -459,7 +459,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 85,
         [UnitType.Submarine]: 95,
         [UnitType.Battleship]: 75,
-        [UnitType.Carrier]: 75
+        [UnitType.Carrier]: 75,
     },
     [UnitType.StealthBomber]: {
         [UnitType.Infantry]: 90,
@@ -486,7 +486,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 35,
         [UnitType.Submarine]: 55,
         [UnitType.Battleship]: 45,
-        [UnitType.Carrier]: 45
+        [UnitType.Carrier]: 45,
     },
     [UnitType.BlackBomb]: {
         [UnitType.Infantry]: 0,
@@ -513,7 +513,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.BlackBoat]: {
         [UnitType.Infantry]: 0,
@@ -540,7 +540,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Lander]: {
         [UnitType.Infantry]: 0,
@@ -567,7 +567,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Cruiser]: {
         [UnitType.Infantry]: 0,
@@ -594,7 +594,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 90,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Submarine]: {
         [UnitType.Infantry]: 0,
@@ -621,7 +621,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 25,
         [UnitType.Submarine]: 55,
         [UnitType.Battleship]: 55,
-        [UnitType.Carrier]: 75
+        [UnitType.Carrier]: 75,
     },
     [UnitType.Battleship]: {
         [UnitType.Infantry]: 95,
@@ -648,7 +648,7 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 95,
         [UnitType.Submarine]: 95,
         [UnitType.Battleship]: 50,
-        [UnitType.Carrier]: 60
+        [UnitType.Carrier]: 60,
     },
     [UnitType.Carrier]: {
         [UnitType.Infantry]: 0,
@@ -675,9 +675,9 @@ const BASE_DAMAGE_MAP: { [key in UnitType]: { [key in UnitType]: number } } = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
-    }
-};
+        [UnitType.Carrier]: 0,
+    },
+}
 
 const AMMOLESS_BASE_DAMAGE_MAP = {
     [UnitType.Infantry]: {
@@ -705,7 +705,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Mech]: {
         [UnitType.Infantry]: 65,
@@ -732,7 +732,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Recon]: {
         [UnitType.Infantry]: 70,
@@ -759,7 +759,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.APC]: {
         [UnitType.Infantry]: 0,
@@ -786,7 +786,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Artillery]: {
         [UnitType.Infantry]: 0,
@@ -813,7 +813,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Tank]: {
         [UnitType.Infantry]: 75,
@@ -840,7 +840,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Antiair]: {
         [UnitType.Infantry]: 0,
@@ -867,7 +867,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Missile]: {
         [UnitType.Infantry]: 0,
@@ -894,7 +894,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Rocket]: {
         [UnitType.Infantry]: 0,
@@ -921,7 +921,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.MdTank]: {
         [UnitType.Infantry]: 105,
@@ -948,7 +948,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Piperunner]: {
         [UnitType.Infantry]: 0,
@@ -975,7 +975,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Neotank]: {
         [UnitType.Infantry]: 125,
@@ -1002,7 +1002,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.MegaTank]: {
         [UnitType.Infantry]: 135,
@@ -1029,7 +1029,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.TCopter]: {
         [UnitType.Infantry]: 0,
@@ -1056,7 +1056,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.BCopter]: {
         [UnitType.Infantry]: 75,
@@ -1083,7 +1083,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Fighter]: {
         [UnitType.Infantry]: 0,
@@ -1110,7 +1110,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Bomber]: {
         [UnitType.Infantry]: 0,
@@ -1137,7 +1137,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.StealthBomber]: {
         [UnitType.Infantry]: 0,
@@ -1164,7 +1164,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.BlackBomb]: {
         [UnitType.Infantry]: 0,
@@ -1191,7 +1191,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.BlackBoat]: {
         [UnitType.Infantry]: 0,
@@ -1218,7 +1218,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Lander]: {
         [UnitType.Infantry]: 0,
@@ -1245,7 +1245,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Cruiser]: {
         [UnitType.Infantry]: 0,
@@ -1272,7 +1272,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 5
+        [UnitType.Carrier]: 5,
     },
     [UnitType.Submarine]: {
         [UnitType.Infantry]: 0,
@@ -1299,7 +1299,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Battleship]: {
         [UnitType.Infantry]: 0,
@@ -1326,7 +1326,7 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
+        [UnitType.Carrier]: 0,
     },
     [UnitType.Carrier]: {
         [UnitType.Infantry]: 0,
@@ -1353,8 +1353,8 @@ const AMMOLESS_BASE_DAMAGE_MAP = {
         [UnitType.Cruiser]: 0,
         [UnitType.Submarine]: 0,
         [UnitType.Battleship]: 0,
-        [UnitType.Carrier]: 0
-    }
+        [UnitType.Carrier]: 0,
+    },
 }
 
 export function getBaseDamage(attacker: UnitType, defender: UnitType) {

@@ -1,4 +1,3 @@
-
 // 1. init (is fog?), board size
 // 1a. if fog, give up
 // 2. init piece dictionaries: location -> historical unit id, unit id -> historical piece chip information
@@ -18,7 +17,6 @@
 // the square from PIT=4 to PIT=9
 // historical piece chip information = (PIT, chip) with chip being a range within [0, 9]. 1st index >= 0th index. [0, 0] indicates no chip.
 // btw unit id is provided within the json response but idk if it's consistent between calls so maybe I'll just ignore this :S
-
 
 // RE-IMPLEMENTING CALCULATOR FOR CHIP DAMAGE
 // not gonna do probability distribution crap bc hard to sample/calc lol
