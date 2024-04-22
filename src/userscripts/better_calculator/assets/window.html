@@ -1,0 +1,118 @@
+<head>
+  <link rel="stylesheet" href="calculator.css" type="text/css" />
+</head>
+<div id="calculator" style="display: block;">
+  <header class="grab-header" style="cursor: grabbing;">
+    Damage calculator
+    <div class="reverse-info-box calculator-help">
+      ?
+      <span class="info-box-text">Hold down "A" or "D" while clicking a unit to add it to the calculator</span>
+    </div> <span class="close-calc">✕</span>
+  </header>
+  <div class="calc-content">
+    <div class="headers">
+      <header>Attacker
+        <span class="select-attacker"> [Select] </span> <span class="swap-position">
+          [Swap]
+        </span>
+      </header>
+      <header>Defender
+        <span class="select-defender"> [Select] </span>
+      </header>
+    </div>
+    <div class="calculator-main">
+      <div class="calculator-attack">
+        <div class="co-options">
+          <div class="co option">
+            <div class="selected-co"><img src="https://awbw.amarriner.com/terrain/aw2/aw2sasha.png?v=1" class="border co_portrait"></div> <!---->
+          </div>
+        </div>
+        <div class="unit-options">
+          <div class="unit option">
+            <div class="selected-unit border"><img src="https://awbw.amarriner.com/terrain/aw2/bminfantry.gif"> <!----></div> <!---->
+          </div>
+          <div class="hp-options"><img src="https://awbw.amarriner.com/terrain/hp.gif"> <input type="text"></div>
+        </div>
+        <div class="https://awbw.amarriner.com/terrain-options">
+          <div class="https://awbw.amarriner.com/terrain option"><img src="https://awbw.amarriner.com/terrain/aw2/wood.gif" class="selected-terrain"> <!---->
+            <div class="https://awbw.amarriner.com/terrain-stars"><img src="https://awbw.amarriner.com/terrain/terrainstar.gif">
+              <p>2</p>
+            </div>
+          </div>
+        </div>
+        <div class="power-and-ammo-container">
+          <div class="power-options">
+            <div class="option"><img src="https://awbw.amarriner.com/terrain/aw2/redstar.gif" class=""> <img src="https://awbw.amarriner.com/terrain/aw2/bluestar.gif"
+                class=""></div>
+          </div>
+          <div class="ammo-options">
+            <div class="option ammo-reverse-info-box" style="visibility: hidden;"><span class="info-box-text">Toggle out
+                of ammo</span> <span class="red-border-strikethru" style="display: none;"></span> <img
+                src="https://awbw.amarriner.com/terrain/ammo_button.gif" class=""></div>
+          </div>
+        </div>
+        <div class="misc-options">
+          <div class="city-options"><img src="https://awbw.amarriner.com/terrain/capt.gif"> <input type="text" max="100" min="0"></div>
+          <div class="tower-options"><img src="https://awbw.amarriner.com/terrain/aw2/commtowericon.gif"> <input type="text" max="100" min="0">
+          </div>
+          <div class="fund-options"><img src="https://awbw.amarriner.com/terrain/coin.gif" class="coin"> <input type="text" min="0"></div>
+        </div>
+      </div>
+      <div class="calculator-defend">
+        <div class="co-options">
+          <div class="co option">
+            <div class="selected-co"><img src="https://awbw.amarriner.com/terrain/aw2/aw2vonbolt.png?v=1" class="border co_portrait"></div> <!---->
+          </div>
+        </div>
+        <div class="unit-options">
+          <div class="unit option">
+            <div class="selected-unit border"><img src="https://awbw.amarriner.com/terrain/aw2/ycinfantry.gif"> <!----></div> <!---->
+          </div>
+          <div class="hp-options"><img src="https://awbw.amarriner.com/terrain/hp.gif"> <input type="text" max="10" min="1"></div>
+        </div>
+        <div class="https://awbw.amarriner.com/terrain-options">
+          <div class="https://awbw.amarriner.com/terrain option"><img src="https://awbw.amarriner.com/terrain/aw2/yellowcometcity.gif" class="selected-terrain"> <!---->
+            <div class="https://awbw.amarriner.com/terrain-stars"><img src="https://awbw.amarriner.com/terrain/terrainstar.gif">
+              <p>3</p>
+            </div>
+          </div>
+        </div>
+        <div class="power-and-ammo-container">
+          <div class="power-options">
+            <div class="option"><img src="https://awbw.amarriner.com/terrain/aw2/redstar.gif" class=""> <img src="https://awbw.amarriner.com/terrain/aw2/bluestar.gif"
+                class=""></div>
+          </div>
+          <div class="ammo-options">
+            <div class="option ammo-reverse-info-box" style="visibility: hidden;"><span class="info-box-text">Toggle out
+                of ammo</span> <span class="red-border-strikethru" style="display: none;"></span> <img
+                src="https://awbw.amarriner.com/terrain/ammo_button.gif" class=""></div>
+          </div>
+        </div>
+        <div class="misc-options">
+          <div class="city-options"><img src="https://awbw.amarriner.com/terrain/capt.gif"> <input type="text" max="100" min="0"></div>
+          <div class="tower-options"><img src="https://awbw.amarriner.com/terrain/aw2/commtowericon.gif"> <input type="text" max="100" min="0">
+          </div>
+          <div class="fund-options"><img src="https://awbw.amarriner.com/terrain/coin.gif" class="coin"> <input type="text" min="0"></div>
+        </div>
+      </div>
+    </div>
+    <div class="calculator-damage">
+      <div class="attacker-damage"><img src="https://awbw.amarriner.com/terrain/fire.gif" class="fire"> <span>
+          33% - 38%
+        </span> <img src="https://awbw.amarriner.com/terrain/coin.gif" class="gold-coin"> <span
+          class="funds-damage-display">
+          300
+          <span style="display: none;">
+            - 300
+          </span></span></div>
+      <div class="defender-damage"><img src="https://awbw.amarriner.com/terrain/fire.gif" class="fire"> <span><span
+            class="bold">@7HP</span>
+          37% - 42%
+        </span> <span style="display: none;"><span class="bold">@7HP</span>
+          37% - 42%</span> <img src="https://awbw.amarriner.com/terrain/coin.gif" class="gold-coin"> <span
+          class="funds-damage-display">300
+          <span>
+            - 400</span></span></div>
+    </div>
+  </div>
+</div>

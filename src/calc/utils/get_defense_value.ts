@@ -3,8 +3,8 @@ import {
     CO,
     COPowerType,
     NAVAL_UNITS,
-} from "../common/types"
-import { CombatModifiers, CombatParticipant } from "./types"
+} from "../../common/types"
+import { CombatModifiers, CombatParticipant } from "../types"
 
 export function getDefenseValue(
     participant: CombatParticipant,
@@ -44,7 +44,7 @@ export function getDefenseValue(
         }
     }
     if (participant.co == CO.Javier) {
-        let comtowerBonus = participant.numComTowers * 10
+        let comtowerBonus = participant.numCommTowers * 10
         if (participant.cop == COPowerType.None) {
             defense += comtowerBonus
         } else if (participant.cop == COPowerType.COP) {

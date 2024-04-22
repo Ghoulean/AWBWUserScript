@@ -1,5 +1,5 @@
-import { CO, COPowerType } from "../common/types"
-import { CombatParticipant, Luck } from "./types"
+import { CO, COPowerType } from "../../common/types"
+import { CombatParticipant, Luck } from "../types"
 
 export function getMaxGoodLuck(participant: CombatParticipant): Luck {
     if (participant.co == CO.Nell) {

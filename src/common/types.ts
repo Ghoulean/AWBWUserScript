@@ -3,14 +3,8 @@ export type BoardLocation = [Coordinate, Coordinate]
 export type BoardLocationKey = string
 export type UnitId = string
 
-// move these
-export type PointInTime = number
-export type ChipDamage = [number, number]
-export type LocationToUnitIdMap = Map<BoardLocationKey, UnitId>
-export type UnitIdToChipDamageMap = Map<UnitId, ChipDamage>
-export function calcBoardLocationKey(loc: BoardLocation): BoardLocationKey {
-    return `${loc[0]},${loc[1]}`
-}
+// todo: enumify
+export type Country = number;
 
 export enum UnitType {
     Infantry = 1,
@@ -30,7 +24,7 @@ export enum UnitType {
     BCopter = 13,
     Fighter = 11,
     Bomber = 12,
-    StealthBomber = 30,
+    Stealth = 30,
     BlackBomb = 968731,
     BlackBoat = 28,
     Lander = 17,
@@ -50,7 +44,7 @@ export const DIRECT_UNITS: Set<UnitType> = new Set([
     UnitType.BCopter,
     UnitType.Fighter,
     UnitType.Bomber,
-    UnitType.StealthBomber,
+    UnitType.Stealth,
     UnitType.Submarine,
     UnitType.Cruiser,
 ])
@@ -115,7 +109,7 @@ export const ALL_UNIT_TYPES = [
     UnitType.BCopter,
     UnitType.Fighter,
     UnitType.Bomber,
-    UnitType.StealthBomber,
+    UnitType.Stealth,
     UnitType.BlackBomb,
     UnitType.BlackBoat,
     UnitType.Lander,
@@ -165,7 +159,7 @@ export enum COPowerType {
 export enum Terrain {
     Plains,
     Mountain,
-    Forest,
+    Woods,
     River,
     Road,
     Bridge,
@@ -177,11 +171,14 @@ export enum Terrain {
     Airport,
     Port,
     HQ,
-    ComTower,
+    CommTower,
     Lab,
     Pipe,
     BrokenPipe,
+    Pipeseam,
     MissileSilo,
+    LoadedMissileSilo,
+    Teleporter
 }
 
 export const URBAN_TERRAIN: Set<Terrain> = new Set([
@@ -190,49 +187,21 @@ export const URBAN_TERRAIN: Set<Terrain> = new Set([
     Terrain.Airport,
     Terrain.City,
     Terrain.Lab,
-    Terrain.ComTower,
+    Terrain.CommTower,
 ])
 
-const ZERO_TERRAIN_STARS: Set<Terrain> = new Set([
-    Terrain.River,
-    Terrain.Road,
-    Terrain.Bridge,
-    Terrain.Sea,
-    Terrain.Shoal,
-    Terrain.Pipe,
-])
+// todo: track COP/SCOP price increase
+export interface PlayerInfo {
+    id: number,
+    num: number,
+    co: CO,
+    cop: COPowerType,
+    copMeter: number,
+    funds: number,
+    numCities: number,
+    numCommTowers: number,
+}
 
-const ONE_TERRAIN_STARS: Set<Terrain> = new Set([
-    Terrain.Plains,
-    Terrain.Reef,
-    Terrain.BrokenPipe,
-])
-
-const TWO_TERRAIN_STARS: Set<Terrain> = new Set([Terrain.Forest])
-
-const THREE_TERRAIN_STARS: Set<Terrain> = new Set([
-    Terrain.City,
-    Terrain.Base,
-    Terrain.Airport,
-    Terrain.Port,
-    Terrain.ComTower,
-    Terrain.MissileSilo,
-    Terrain.Lab,
-])
-
-const FOUR_TERRAIN_STARS: Set<Terrain> = new Set([Terrain.HQ, Terrain.Mountain])
-
-export function getTerrainStars(terrain: Terrain): number {
-    if (ZERO_TERRAIN_STARS.has(terrain)) {
-        return 0
-    } else if (ONE_TERRAIN_STARS.has(terrain)) {
-        return 1
-    } else if (TWO_TERRAIN_STARS.has(terrain)) {
-        return 2
-    } else if (THREE_TERRAIN_STARS.has(terrain)) {
-        return 3
-    } else if (FOUR_TERRAIN_STARS.has(terrain)) {
-        return 4
-    }
-    throw Error("Unreachable statement")
+export interface PlayersInfo {
+    [playerId: number]: PlayerInfo
 }

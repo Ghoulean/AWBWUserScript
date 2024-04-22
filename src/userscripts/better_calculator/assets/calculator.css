@@ -1,0 +1,291 @@
+.attacker-damage, .defender-damage {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+.bold {
+	font-weight: bold;
+}
+.border {
+	border: 1px solid #888888;
+	background: white;
+	cursor: pointer;
+}
+#calculator {
+	background: white;
+	border: 1px solid black;
+	display: none;
+	font-family: sans-serif;
+	font-size: 14px;
+	left: 200px;
+	position: absolute;
+	top: 200px;
+	-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+	width: 340px;
+	z-index: 800;
+}
+.calculator-attack, .calculator-defend {
+	align-items: center;
+	background: #DDDDDD;
+	border: 1px solid #888888;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 4px;
+	padding-top: 4px;
+	width: 49%;
+}
+.calculator-damage {
+	display: flex;
+	justify-content: space-around
+}
+.calculator-damage div {
+	width: 49%;
+}
+#calculator header {
+	background: #0066CC;
+	border: 1px solid #888888;
+	color: white;
+	font-weight: bold;
+	padding: 2px 2px;
+}
+.calculator-help {
+	position: absolute;
+	right: 32px;
+}
+.calculator-help span {
+	right: 8px;
+	position: absolute;
+	width: 150px;
+}
+.calculator-main {
+	display: flex;
+	flex-direction: row;
+	justify-content: center
+}
+.co-menu {
+	width: 144px;
+}
+.coin {
+	flex-shrink: 0;
+}
+.defender-hp {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+div[class$="-menu"] {
+	align-items: center;
+	background: white;
+	border: 1px solid #DDDDDD;
+	position: absolute;
+	z-index: 10;
+}
+div[class$="-menu"] img {
+	border: 1px solid #888888;
+	margin: 1px;
+	background: #DDDDDD;
+}
+div[class$="-menu"] img:hover {
+	transform: scale(1.2);
+}
+div[class$="-options"] {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-right: 5px;
+	margin-top: 4px;
+}
+div[class="hp-options"], div[class="city-options"], div[class="tower-options"], div[class="fund-options"] {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+div[class="misc-options"] {
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 4px;
+	width: 92px;
+}
+div[class="power-options"] {
+	align-self: flex-start;
+	align-items: center;
+	flex-direction: row;
+	width: 60px;
+}
+div[class="ammo-options"] {
+	align-self: center;
+	align-items: center;
+	flex-direction: row;
+}
+div[class="fund-options"] {
+	width: 100%;
+}
+div[class^="selected-"]:hover, img[class^="selected-"]:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+.fire {
+	margin: 2px 0;
+}
+.fund-options input {
+	margin-left: 1px;
+	margin-right: 5px;
+	overflow: hidden;
+	min-width: 40px;
+}
+.gold-coin {
+	margin: 2px 0;
+}
+.grab-header {
+	align-items: center;
+	cursor: grab;
+	display: flex;
+}
+.grab-header span {
+	cursor: pointer;
+	font-size: 16px;
+	margin-left: auto;
+	margin-right: 8px;
+}
+.green-border {
+	border-color: #29B5E9 !important;
+	transform: scale(1.2)!important;
+}
+.red-border {
+	border-color: #e92929 !important;
+	border-radius: 25% !important;
+	transform: scale(1.2)!important;
+}
+.red-border-strikethru {
+    width: 100%;
+    height: 90%;
+    display: inline-block;
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+	border-radius: 15%;
+    background: linear-gradient(to top right,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 0) 47%,
+			rgba(233, 43, 43,1) 47%,
+			rgba(233, 43, 43,1) 53%,
+			rgba(0,0,0,0) 53%,
+			rgba(0,0,0,0) 100%);
+}
+.headers {
+	display: flex;
+	justify-content: space-around;
+	margin: 2px 0;
+}
+.headers header {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	width: 49%;
+}
+.hp-options img, .tower-options img {
+	width: 9px;
+}
+.hp-options input, .city-options input, .tower-options input {
+	margin-left: 2px;
+	width: 20px;
+}
+.hp-display {
+	bottom: 4px;
+	right: 0;
+	position: absolute;
+	width: 12px!important;
+}
+.option {
+	margin: 0 5px;
+	position: relative;
+}
+.power-options img {
+	border: 2px solid transparent;
+	cursor: pointer;
+	width: 19px;
+}
+.power-options img:hover {
+	transform: scale(1.2);
+}
+.ammo-options img {
+	border: 2px solid transparent;
+	cursor: pointer;
+	width: 19px;
+}
+.ammo-options img:hover {
+	transform: scale(1.2);
+}
+.ammo-reverse-info-box .info-box-text {
+	width: 40px;
+	right: 20px;
+	pointer-events: none;
+}
+.ammo-reverse-info-box:hover .info-box-text {
+	visibility:visible;
+}
+.select-attacker, .select-defender {
+	right: 2px;
+}
+.selected-co {
+	align-items: center;
+	display: flex;
+	height: 48px;
+	justify-content: center;
+	width: 48px;
+}
+.swap-position, .select-attacker, .select-defender {
+	cursor: pointer;
+	font-size: 10px;
+	font-weight: 400;
+	position: absolute;
+}
+.swap-position {
+	left: 2px;
+}
+.swap-position:hover, .select-attacker:hover, .select-defender:hover {
+	color: #DDDDDD;
+}
+.terrain {
+	position: absolute;
+}
+.terrain-menu {
+	position: relative;
+	width: 112px;
+}
+.terrain-options {
+	align-items: center;
+	margin-left: 9px;
+	width: 24px;
+}
+.terrain-stars {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	height: 20px;
+	justify-content: center;
+	margin-top: auto;
+	z-index: 100;
+}
+.terrain-stars img {
+	width: 9px!important;
+}
+.terrain-stars p {
+	margin-left: 3px;
+}
+.unit img, .terrain img {
+	width: 24px;
+}
+.unit-menu {
+	width: 144px;
+}
+.unit-options {
+	align-items: center;
+}

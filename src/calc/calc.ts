@@ -2,13 +2,14 @@ import {
     CO,
     COPowerType,
     INDIRECT_UNITS,
-    getTerrainStars,
 } from "../common/types"
-import { getBaseAmmolessDamage, getBaseDamage } from "./base_damage_map"
-import { getAttackValue } from "./get_attack_value"
-import { getDefenseValue } from "./get_defense_value"
-import { getMaxBadLuck, getMaxGoodLuck } from "./get_luck"
-import { Combat, CombatParticipant, Damage, Luck } from "./types"
+import { getTerrainStars } from "../common/utils"
+import { getBaseAmmolessDamage, getBaseDamage } from "./utils/base_damage_map"
+import { getAttackValue } from "./utils/get_attack_value"
+import { getDefenseValue } from "./utils/get_defense_value"
+import { getMaxBadLuck, getMaxGoodLuck } from "./utils/get_luck"
+import { Combat, CombatParticipant, Damage, Luck, VisualDamageAndChip, VisualHealthAndChip } from "./types"
+import { addChipDamages, simplifyChip } from "./utils/utils"
 
 interface DamageFormulaParameters {
     base: number
@@ -21,7 +22,7 @@ interface DamageFormulaParameters {
     visual_hp_defender: number
 }
 
-export function calculateCombatResult(combat: Combat): Damage {
+export function calculateCombatDamage(combat: Combat): Damage {
     let max_good_luck: Luck = getMaxGoodLuck(combat.attacker)
     let max_bad_luck: Luck = getMaxBadLuck(combat.attacker)
     let attack_value = getAttackValue(combat.attacker, combat.combatModifiers)
@@ -33,7 +34,7 @@ export function calculateCombatResult(combat: Combat): Damage {
     })
     let terrain_stars = getDefenderTerrainStarsForCalculator(combat.defender)
 
-    let base_damage = combat.combatModifiers.ammoless
+    let base_damage = combat.attacker.ammoless
         ? getBaseAmmolessDamage(combat.attacker.unit, combat.defender.unit)
         : getBaseDamage(combat.attacker.unit, combat.defender.unit) ||
           getBaseAmmolessDamage(combat.attacker.unit, combat.defender.unit)
@@ -57,6 +58,13 @@ export function calculateCombatResult(combat: Combat): Damage {
     }
 
     return retVal.sort((a, b) => a - b)
+}
+
+export function calculateResultingHp(initial: VisualHealthAndChip, damage: VisualDamageAndChip): VisualHealthAndChip {
+    const new_chip = addChipDamages(initial[1], damage[1])
+    const simplified_chip = simplifyChip(new_chip);
+    const new_health = initial[0] - damage[0] - simplified_chip[0];
+    return [new_health, simplified_chip[1]]
 }
 
 function getDefenderTerrainStarsForCalculator(defender: CombatParticipant) {

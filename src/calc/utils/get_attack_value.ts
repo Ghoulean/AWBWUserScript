@@ -10,16 +10,16 @@ import {
     URBAN_TERRAIN,
     UnitType,
     VEHICLE_UNITS,
-    getTerrainStars,
-} from "../common/types"
-import { CombatModifiers, CombatParticipant } from "./types"
+} from "../../common/types"
+import { getTerrainStars } from "../../common/utils"
+import { CombatModifiers, CombatParticipant } from "../types"
 
 export function getAttackValue(
     participant: CombatParticipant,
     combatModifiers: CombatModifiers,
 ): number {
     let attack = 100
-    attack += participant.numComTowers * 10
+    attack += participant.numCommTowers * 10
     if (
         participant.cop == COPowerType.COP ||
         participant.cop == COPowerType.SCOP

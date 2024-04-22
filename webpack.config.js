@@ -7,7 +7,8 @@ const TerserPlugin = require("terser-webpack-plugin")
 module.exports = {
     mode: "development",
     entry: {
-        chip_damage_tracker: "./src/chip_damage_tracker/index.ts",
+        better_calculator: "./src/userscripts/better_calculator/index.ts",
+        chip_damage_tracker: "./src/userscripts/chip_damage_tracker/index.ts",
     },
     output: {
         filename: "[name].bundle.js",
@@ -22,9 +23,16 @@ module.exports = {
                 },
                 exclude: /node_modules/,
             },
+            {
+                test: /\.png/,
+                type: 'asset/inline'
+            }
         ],
     },
     resolve: {
+        alias: {
+            'src': path.resolve(__dirname, 'src'),
+        },
         extensions: [".ts", ".js"],
     },
     optimization: {
@@ -35,7 +43,10 @@ module.exports = {
                 },
                 terserOptions: {
                     format: {
-                        comments: /@|UserScript/,
+                        comments: /@|UserScript/
+                    },
+                    mangle: {
+                        reserved: ["playersInfo", "terrainInfo", "buildingsInfo"],
                     },
                 },
             }),
@@ -45,7 +56,7 @@ module.exports = {
         new webpack.BannerPlugin({
             banner: ({ chunk }) => {
                 return fs.readFileSync(
-                    path.join(__dirname, "src", chunk.name, "meta.ts"),
+                    path.join(__dirname, "src", "userscripts", chunk.name, "meta.ts"),
                     { encoding: "utf8" },
                 )
             },
