@@ -1,14 +1,17 @@
-import {
-    CO,
-    COPowerType,
-    INDIRECT_UNITS,
-} from "../common/types"
+import { CO, COPowerType, INDIRECT_UNITS } from "../common/types"
 import { getTerrainStars } from "../common/utils"
 import { getBaseAmmolessDamage, getBaseDamage } from "./utils/base_damage_map"
 import { getAttackValue } from "./utils/get_attack_value"
 import { getDefenseValue } from "./utils/get_defense_value"
 import { getMaxBadLuck, getMaxGoodLuck } from "./utils/get_luck"
-import { Combat, CombatParticipant, Damage, Luck, VisualDamageAndChip, VisualHealthAndChip } from "./types"
+import {
+    Combat,
+    CombatParticipant,
+    Damage,
+    Luck,
+    VisualDamageAndChip,
+    VisualHealthAndChip,
+} from "./types"
 import { addChipDamages, simplifyChip } from "./utils/utils"
 
 interface DamageFormulaParameters {
@@ -60,10 +63,13 @@ export function calculateCombatDamage(combat: Combat): Damage {
     return retVal.sort((a, b) => a - b)
 }
 
-export function calculateResultingHp(initial: VisualHealthAndChip, damage: VisualDamageAndChip): VisualHealthAndChip {
+export function calculateResultingHp(
+    initial: VisualHealthAndChip,
+    damage: VisualDamageAndChip,
+): VisualHealthAndChip {
     const new_chip = addChipDamages(initial[1], damage[1])
-    const simplified_chip = simplifyChip(new_chip);
-    const new_health = initial[0] - damage[0] - simplified_chip[0];
+    const simplified_chip = simplifyChip(new_chip)
+    const new_health = initial[0] - damage[0] - simplified_chip[0]
     return [new_health, simplified_chip[1]]
 }
 

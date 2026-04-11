@@ -4,7 +4,7 @@ export type BoardLocationKey = string
 export type UnitId = string
 
 // todo: enumify
-export type Country = number;
+export type Country = number
 
 export enum UnitType {
     Infantry = 1,
@@ -87,8 +87,12 @@ export const NAVAL_UNITS: Set<UnitType> = new Set([
 ])
 
 export const AIR_UNITS: Set<UnitType> = new Set([
-    UnitType.Infantry,
-    UnitType.Mech,
+    UnitType.TCopter,
+    UnitType.BCopter,
+    UnitType.Fighter,
+    UnitType.Bomber,
+    UnitType.Stealth,
+    UnitType.BlackBomb,
 ])
 
 export const ALL_UNIT_TYPES = [
@@ -178,7 +182,7 @@ export enum Terrain {
     Pipeseam,
     MissileSilo,
     LoadedMissileSilo,
-    Teleporter
+    Teleporter,
 }
 
 export const URBAN_TERRAIN: Set<Terrain> = new Set([
@@ -192,14 +196,14 @@ export const URBAN_TERRAIN: Set<Terrain> = new Set([
 
 // todo: track COP/SCOP price increase
 export interface PlayerInfo {
-    id: number,
-    num: number,
-    co: CO,
-    cop: COPowerType,
-    copMeter: number,
-    funds: number,
-    numCities: number,
-    numCommTowers: number,
+    id: number
+    num: number
+    co: CO
+    cop: COPowerType
+    copMeter: number
+    funds: number
+    numCities: number
+    numCommTowers: number
 }
 
 export interface PlayersInfo {

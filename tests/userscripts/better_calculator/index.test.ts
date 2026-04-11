@@ -1,4 +1,1 @@
-
-test("calculateDamage injection sanity test", () => {
-
-})
+test("calculateDamage injection sanity test", () => {})

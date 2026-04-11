@@ -1,139 +1,224 @@
-import { buildCalculatorToggleButtonHtml } from "./html";
-import { AWBWBuildingsInfo, AWBWPlayersInfo, AWBWTerrainInfo, AWBWUnit } from "src/common/awbw_types";
+import { Combat, CombatParticipant } from "src/calc/types"
+import { parseAWBWUnit } from "src/calc/utils/awbw_utils"
+import { parsePlayersInfo, getTerrain } from "src/common/awbw_utils"
+import {
+    buildCalculatorToggleButtonHtml,
+    buildCalculatorWindowHtml,
+    injectCalculatorStyles,
+    updateAttackerDamageDisplay,
+    updateCounterattackDisplay,
+} from "./html"
+import {
+    AWBWBuildingsInfo,
+    AWBWPlayersInfo,
+    AWBWTerrainInfo,
+    AWBWUnit,
+} from "src/common/awbw_types"
+import { CombatResult, CounterattackScenario, DamageResult } from "./model"
+import { calculateCombatDamage } from "src/calc/calc"
+import {
+    getBaseDamage,
+    getBaseAmmolessDamage,
+} from "src/calc/utils/base_damage_map"
+import { getUnitCost } from "src/common/utils"
+import { INDIRECT_UNITS } from "src/common/types"
 
 declare const playersInfo: AWBWPlayersInfo
 declare const terrainInfo: AWBWTerrainInfo
 declare const buildingsInfo: AWBWBuildingsInfo
 
-/*
-interface CalculatorUI {
-    is_visible: boolean,
-    is_dragging: boolean,
-    is_attacker_keypress_down: boolean,
-    is_defender_keypress_down: boolean,
-    window_location: [number, number]
-}
+let calculator_window: Element | null = null
 
-interface CalculatorState {
-    combat: Combat,
-    ui: CalculatorUI
-}*/
+function computeCombatResult(combat: Combat): CombatResult {
+    const primary_damage = calculateCombatDamage(combat)
+    const min_damage = primary_damage[0]
+    const max_damage = primary_damage[primary_damage.length - 1]
 
-/*
-function code i wrote for obj translation that ended up not working(attackerUnit: AWBWUnit, defenderUnit: AWBWUnit, endTile: number): Promise<MockedAxiosResponse> {
-    const parsed_players_info = parsePlayersInfo(playersInfo)
+    const defender_cost = getUnitCost(combat.defender.unit) ?? 0
+    const attacker_cost = getUnitCost(combat.attacker.unit) ?? 0
 
-    const width = Object.keys(terrainInfo).length - 1;
-    const end_tile_x = endTile % width;
-    const end_tile_y = (endTile - end_tile_x) / width;
-
-    const attacker_terrain = getTerrain(terrainInfo, buildingsInfo, end_tile_x, end_tile_y)
-    const defender_terrain = getTerrain(terrainInfo, buildingsInfo, defenderUnit.units_x, defenderUnit.units_y)
-    const attacker: CombatParticipant = parseAWBWUnit(parsed_players_info, attacker_terrain, attackerUnit)
-    const defender: CombatParticipant = parseAWBWUnit(parsed_players_info, defender_terrain, defenderUnit)
-
-    const combat: Combat = {
-        attacker: attacker,
-        defender: defender,
-        combatModifiers: {}
+    const attackerDamage: DamageResult = {
+        minDamage: min_damage,
+        maxDamage: max_damage,
+        minFundsDamage: Math.floor((min_damage * defender_cost) / 100),
+        maxFundsDamage: Math.floor((max_damage * defender_cost) / 100),
     }
 
-    return new Promise((resolve, _reject) => {
-        resolve(calculateDamage2(combat))
-    });
-}
+    const is_direct = !INDIRECT_UNITS.has(combat.attacker.unit)
+    const defender_can_retaliate =
+        getBaseDamage(combat.defender.unit, combat.attacker.unit) > 0 ||
+        getBaseAmmolessDamage(combat.defender.unit, combat.attacker.unit) > 0
 
-function calculateDamage2(combat: Combat): MockedAxiosResponse {
-    // todo: account for pre-existing chip
-    const first_combat_damage = calculateCombatDamage(combat);
-
-    if (INDIRECT_UNITS.has(combat.attacker.unit) || INDIRECT_UNITS.has(combat.defender.unit)) {
+    if (!is_direct || !defender_can_retaliate) {
         return {
-            data: {
-                maxInfo: first_combat_damage[first_combat_damage.length - 1],
-                minInfo: first_combat_damage[0],
-                maxCounterInfo: 0,
-                minCounterInfo: 0
-            }
+            attackerDamage,
+            counterattackAtMinDamage: null,
+            counterattackAtMaxDamage: null,
         }
     }
 
-    const first_combat_vd_and_chip = damageToVisualDamageAndChip(first_combat_damage)
-    const defender_resulting_hp = calculateResultingHp([combat.defender.visualHp, ZERO_CHIP_DAMAGE], first_combat_vd_and_chip)
+    const max_defender_true_hp = combat.defender.visualHp * 10
 
-    const counterattack_combat: Combat = {
-        attacker: combat.attacker,
-        defender: {
-            ...combat.defender,
-            visualHp: defender_resulting_hp[0]
-        },
-        combatModifiers: {
-            ...combat.combatModifiers,
-            isCounterattack: true
+    function computeCounterattack(
+        primary_damage_taken: number,
+    ): CounterattackScenario | null {
+        const remaining_true_hp = max_defender_true_hp - primary_damage_taken
+        if (remaining_true_hp <= 0) return null
+
+        const remaining_visual_hp = Math.ceil(remaining_true_hp / 10)
+        const counter_combat: Combat = {
+            attacker: { ...combat.defender, visualHp: remaining_visual_hp },
+            defender: combat.attacker,
+            combatModifiers: { isCounterattack: true },
+        }
+        const counter_damage = calculateCombatDamage(counter_combat)
+
+        return {
+            visualHp: remaining_visual_hp,
+            minDamage: counter_damage[0],
+            maxDamage: counter_damage[counter_damage.length - 1],
+            minFundsDamage: Math.floor(
+                (counter_damage[0] * attacker_cost) / 100,
+            ),
+            maxFundsDamage: Math.floor(
+                (counter_damage[counter_damage.length - 1] * attacker_cost) /
+                    100,
+            ),
         }
     }
-    const counterattack_combat_damage = calculateCombatDamage(counterattack_combat)
 
     return {
-        data: {
-            maxInfo: first_combat_damage[first_combat_damage.length - 1],
-            minInfo: first_combat_damage[0],
-            maxCounterInfo: counterattack_combat_damage[counterattack_combat_damage.length - 1],
-            minCounterInfo: counterattack_combat_damage[0]
-        }
+        attackerDamage,
+        counterattackAtMinDamage: computeCounterattack(min_damage),
+        counterattackAtMaxDamage: computeCounterattack(max_damage),
     }
-}*/
+}
+
+// Called by AWBW's calculator when the user initiates an attack.
+// endTile is the flat tile index of the destination (attacker's landing tile).
+function calculateDamage(
+    attackerUnit: AWBWUnit,
+    defenderUnit: AWBWUnit,
+    endTile: number,
+): Promise<CombatResult> {
+    const parsed_players_info = parsePlayersInfo(playersInfo)
+
+    const width = Object.keys(terrainInfo).length - 1
+    const end_tile_x = endTile % width
+    const end_tile_y = (endTile - end_tile_x) / width
+
+    const attacker_terrain = getTerrain(
+        terrainInfo,
+        buildingsInfo,
+        end_tile_x,
+        end_tile_y,
+    )
+    const defender_terrain = getTerrain(
+        terrainInfo,
+        buildingsInfo,
+        defenderUnit.units_x,
+        defenderUnit.units_y,
+    )
+    const attacker: CombatParticipant = parseAWBWUnit(
+        parsed_players_info,
+        attacker_terrain,
+        attackerUnit,
+    )
+    const defender: CombatParticipant = parseAWBWUnit(
+        parsed_players_info,
+        defender_terrain,
+        defenderUnit,
+    )
+
+    const combat: Combat = {
+        attacker,
+        defender,
+        combatModifiers: {},
+    }
+
+    const result = computeCombatResult(combat)
+    displayResult(result)
+    return Promise.resolve(result)
+}
+
+function displayResult(result: CombatResult): void {
+    if (!calculator_window) return
+    updateAttackerDamageDisplay(calculator_window, result.attackerDamage)
+    updateCounterattackDisplay(
+        calculator_window,
+        result.counterattackAtMinDamage,
+        result.counterattackAtMaxDamage,
+    )
+}
 
 function getCalculatorButton(doc: Document): Element {
     const elements = doc.getElementsByClassName("calculator-toggle")
     if (elements.length != 1) {
-        throw new Error("cannot locate calculator button");
+        throw new Error("cannot locate calculator button")
     }
-    return elements[0];
+    return elements[0]
 }
 
-function init(doc: Document) {
-    const button = buildCalculatorToggleButtonHtml(doc)
-    const calc_button = getCalculatorButton(doc);
-    calc_button.after(button);
+function setupDrag(win: HTMLElement): void {
+    const header = win.querySelector(".grab-header") as HTMLElement | null
+    if (!header) return
+
+    let is_dragging = false
+    let drag_offset_x = 0
+    let drag_offset_y = 0
+
+    header.addEventListener("mousedown", (e: MouseEvent) => {
+        is_dragging = true
+        const rect = win.getBoundingClientRect()
+        drag_offset_x = e.clientX - rect.left
+        drag_offset_y = e.clientY - rect.top
+        header.style.cursor = "grabbing"
+    })
+    document.addEventListener("mousemove", (e: MouseEvent) => {
+        if (!is_dragging) return
+        win.style.left = `${e.clientX - drag_offset_x}px`
+        win.style.top = `${e.clientY - drag_offset_y}px`
+    })
+    document.addEventListener("mouseup", () => {
+        if (is_dragging) {
+            is_dragging = false
+            header.style.cursor = "grab"
+        }
+    })
 }
 
-function onLoad() {
-    init(document)
-}
+function init(doc: Document): void {
+    injectCalculatorStyles(doc)
 
-window.addEventListener("load", onLoad)
+    calculator_window = buildCalculatorWindowHtml(doc)
+    doc.body.appendChild(calculator_window)
 
-/*
-const state: CalculatorState = {
-    combat: {
-        attacker: {
-            co: CO.Andy,
-            unit: UnitType.Infantry,
-            cop: COPowerType.None,
-            visualHp: 10,
-            terrain: Terrain.Plains,
-            numCommTowers: 0,
-            numCities: 0,
-            currentGold: 0
-        },
-        defender: {
-            co: CO.Andy,
-            unit: UnitType.Infantry,
-            cop: COPowerType.None,
-            visualHp: 10,
-            terrain: Terrain.Plains,
-            numCommTowers: 0,
-            numCities: 0,
-            currentGold: 0
-        },
-        combatModifiers: {}
-    },
-    ui: {
-        is_visible: false,
-        is_attacker_keypress_down: false,
-        is_defender_keypress_down: false,
-        window_location: [0, 0],
-        is_dragging: false
+    setupDrag(calculator_window as HTMLElement)
+
+    const close_btn = calculator_window.querySelector(".close-calc")
+    if (close_btn) {
+        close_btn.addEventListener("click", () => {
+            ;(calculator_window as HTMLElement).style.display = "none"
+        })
     }
-}*/
+
+    // Swap: recompute with attacker/defender reversed. Since we don't yet
+    // maintain local state for the selected units, this is a no-op for now.
+    // TODO: wire up once unit selection state is tracked.
+
+    const toggle_button = buildCalculatorToggleButtonHtml(doc)
+    const calc_button = getCalculatorButton(doc)
+    calc_button.after(toggle_button)
+
+    toggle_button.addEventListener("click", () => {
+        const win = calculator_window as HTMLElement
+        win.style.display = win.style.display === "none" ? "block" : "none"
+    })
+
+    // Expose calculateDamage so AWBW's calculator can call it.
+    // With @grant none the userscript runs in page context, so this directly
+    // overrides any existing page-level calculateDamage function.
+    ;(window as any).calculateDamage = calculateDamage
+}
+
+window.addEventListener("load", () => init(document))

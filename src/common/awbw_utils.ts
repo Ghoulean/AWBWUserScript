@@ -1,12 +1,29 @@
-import { AWBWBuildingsInfo, AWBWPlayerInfo, AWBWPlayersInfo, AWBWTerrainInfo } from "./awbw_types";
-import { COPowerType, Coordinate, PlayerInfo, PlayersInfo, Terrain } from "./types";
+import {
+    AWBWBuildingsInfo,
+    AWBWPlayerInfo,
+    AWBWPlayersInfo,
+    AWBWTerrainInfo,
+} from "./awbw_types"
+import {
+    COPowerType,
+    Coordinate,
+    PlayerInfo,
+    PlayersInfo,
+    Terrain,
+} from "./types"
 
-export function getTerrain(terrainInfo: AWBWTerrainInfo, buildingsInfo: AWBWBuildingsInfo, x: Coordinate, y: Coordinate): Terrain {
-    const terrain_id: number | undefined = terrainInfo[x]?.[y]?.terrain_id || buildingsInfo[x]?.[y]?.terrain_id;
+export function getTerrain(
+    terrainInfo: AWBWTerrainInfo,
+    buildingsInfo: AWBWBuildingsInfo,
+    x: Coordinate,
+    y: Coordinate,
+): Terrain {
+    const terrain_id: number | undefined =
+        terrainInfo[x]?.[y]?.terrain_id || buildingsInfo[x]?.[y]?.terrain_id
     if (!terrain_id) {
         throw new Error(`Couldn't get terrain at x=${x}, y=${y}`)
     }
-    return convertTileIdToTerrain(terrain_id);
+    return convertTileIdToTerrain(terrain_id)
 }
 
 export function parsePlayersInfo(playersInfo: AWBWPlayersInfo): PlayersInfo {
@@ -23,11 +40,16 @@ function parsePlayerInfo(playerInfo: AWBWPlayerInfo): PlayerInfo {
         num: playerInfo.players_order,
         id: playerInfo.players_id,
         co: playerInfo.players_co_id,
-        cop: (playerInfo.players_co_power_on == "Y") ? COPowerType.COP : ((playerInfo.players_co_power_on == "S" ? COPowerType.SCOP : COPowerType.None)),
+        cop:
+            playerInfo.players_co_power_on == "Y"
+                ? COPowerType.COP
+                : playerInfo.players_co_power_on == "S"
+                  ? COPowerType.SCOP
+                  : COPowerType.None,
         copMeter: playerInfo.players_co_power,
         funds: playerInfo.players_funds,
         numCities: playerInfo.cities,
-        numCommTowers: playerInfo.towers
+        numCommTowers: playerInfo.towers,
     }
 }
 
@@ -201,10 +223,10 @@ export function convertTileIdToTerrain(id: number): Terrain {
         192: Terrain.HQ,
         193: Terrain.Lab,
         194: Terrain.Port,
-        195: Terrain.Teleporter
+        195: Terrain.Teleporter,
     }[id]
     if (!tile) {
         throw new Error(`Couldn't recognize tile id=${id}`)
     }
-    return tile;
+    return tile
 }

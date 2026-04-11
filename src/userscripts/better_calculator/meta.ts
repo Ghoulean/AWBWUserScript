@@ -4,8 +4,8 @@
 // @version         1.0.0
 // @author          ghoulean
 // @match           https://awbw.amarriner.com/game.php*
-// @grant           GM.setValue
-// @grant           GM.getValue
+// @grant           none
+// @run-at          document-idle
 // @namespace       https://github.com/Ghoulean
 // @downloadURL     <todo>
 // @updateURL       <todo>

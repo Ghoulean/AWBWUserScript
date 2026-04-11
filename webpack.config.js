@@ -11,7 +11,7 @@ module.exports = {
         chip_damage_tracker: "./src/userscripts/chip_damage_tracker/index.ts",
     },
     output: {
-        filename: "[name].bundle.js",
+        filename: "[name].bundle.user.js",
         path: path.resolve(__dirname, "dist"),
     },
     module: {
@@ -25,13 +25,13 @@ module.exports = {
             },
             {
                 test: /\.png/,
-                type: 'asset/inline'
-            }
+                type: "asset/inline",
+            },
         ],
     },
     resolve: {
         alias: {
-            'src': path.resolve(__dirname, 'src'),
+            src: path.resolve(__dirname, "src"),
         },
         extensions: [".ts", ".js"],
     },
@@ -43,10 +43,14 @@ module.exports = {
                 },
                 terserOptions: {
                     format: {
-                        comments: /@|UserScript/
+                        comments: /@|UserScript/,
                     },
                     mangle: {
-                        reserved: ["playersInfo", "terrainInfo", "buildingsInfo"],
+                        reserved: [
+                            "playersInfo",
+                            "terrainInfo",
+                            "buildingsInfo",
+                        ],
                     },
                 },
             }),
@@ -56,7 +60,13 @@ module.exports = {
         new webpack.BannerPlugin({
             banner: ({ chunk }) => {
                 return fs.readFileSync(
-                    path.join(__dirname, "src", "userscripts", chunk.name, "meta.ts"),
+                    path.join(
+                        __dirname,
+                        "src",
+                        "userscripts",
+                        chunk.name,
+                        "meta.ts",
+                    ),
                     { encoding: "utf8" },
                 )
             },

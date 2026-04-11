@@ -1,9 +1,4 @@
-import {
-    AIR_UNITS,
-    CO,
-    COPowerType,
-    NAVAL_UNITS,
-} from "../../common/types"
+import { AIR_UNITS, CO, COPowerType, NAVAL_UNITS } from "../../common/types"
 import { CombatModifiers, CombatParticipant } from "../types"
 
 export function getDefenseValue(

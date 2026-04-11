@@ -71,6 +71,6 @@ export function getUnitCost(unit: UnitType): number {
         [UnitType.Stealth]: 24000,
         [UnitType.Submarine]: 20000,
         [UnitType.TCopter]: 5000,
-        [UnitType.Tank]: 7000
+        [UnitType.Tank]: 7000,
     }[unit]
 }
