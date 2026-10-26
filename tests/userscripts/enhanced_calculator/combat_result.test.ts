@@ -3,7 +3,7 @@ import { parseAWBWCalculatorSide } from "src/calc/utils/awbw_utils"
 import { pointMass, uniformForVisualHp } from "src/calc/hp_distribution"
 import { convertTileIdToTerrain } from "src/common/awbw_utils"
 import { CO, COPowerType, Terrain, UnitType } from "src/common/types"
-import { computeCombatResult } from "src/userscripts/better_calculator/combat_result"
+import { computeCombatResult } from "src/userscripts/enhanced_calculator/combat_result"
 
 const andy_tank: CombatParticipant = {
     co: CO.Andy,

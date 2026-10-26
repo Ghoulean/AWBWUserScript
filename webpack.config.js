@@ -7,7 +7,7 @@ const TerserPlugin = require("terser-webpack-plugin")
 module.exports = {
     mode: "development",
     entry: {
-        better_calculator: "./src/userscripts/better_calculator/index.ts",
+        enhanced_calculator: "./src/userscripts/enhanced_calculator/index.ts",
         chip_damage_tracker: "./src/userscripts/chip_damage_tracker/index.ts",
     },
     output: {

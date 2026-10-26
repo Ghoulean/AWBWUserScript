@@ -56,7 +56,7 @@ function init(doc: Document): void {
     const calculator = (window as any).calculator as AWBWCalculator | undefined
     const calculator_window = doc.getElementById("calculator")
     if (!calculator || !calculator_window) {
-        console.warn("[better_calculator] AWBW calculator not found")
+        console.warn("[enhanced_calculator] AWBW calculator not found")
         return
     }
 
@@ -116,7 +116,7 @@ function init(doc: Document): void {
                 defender.distribution,
             )
         } catch (e) {
-            console.warn("[better_calculator] could not compute combat", e)
+            console.warn("[enhanced_calculator] could not compute combat", e)
         }
 
         if (!panel.isConnected) {
@@ -186,14 +186,14 @@ function init(doc: Document): void {
             status = `True HP tracked through day ${day}`
             if (result.resets.length > 0) {
                 console.info(
-                    "[better_calculator] tracker resets",
+                    "[enhanced_calculator] tracker resets",
                     result.resets,
                 )
             }
             update()
         })
         .catch((e) => {
-            console.warn("[better_calculator] true HP tracking failed", e)
+            console.warn("[enhanced_calculator] true HP tracking failed", e)
             status = "True HP tracking: unavailable"
             update()
         })

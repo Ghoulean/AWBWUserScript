@@ -24,7 +24,7 @@ When two units initiate combat with each other, the defender may retaliate in th
 2. The attacked unit survives (dead units do not fire back)
 3. The attacked unit can attack the other unit (e.g. Infantry cannot attack Bombers, so a Bomber attacking an Infantry will not be counterattacked, even if the Infantry survives).
 
-**Damage Formula**: Damage = (B _ A) / 100 + L _ (HP*A / 10) * ((200 - D*v + D_tr * HP_D) / 100)
+**Damage Formula**: Damage = (B * A) / 100 + L * (HP_A / 10) * ((200 - D_v + D_tr * HP_D) / 100)
 
 Where:
 
