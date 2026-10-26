@@ -8,7 +8,6 @@ module.exports = {
     mode: "development",
     entry: {
         enhanced_calculator: "./src/userscripts/enhanced_calculator/index.ts",
-        chip_damage_tracker: "./src/userscripts/chip_damage_tracker/index.ts",
     },
     output: {
         filename: "[name].bundle.user.js",

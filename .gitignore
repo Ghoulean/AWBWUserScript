@@ -1,5 +1,7 @@
 build
-dist
 node_modules
 types
 temp*.json
+
+dist/*
+!dist/enhanced_calculator.bundle.user.js

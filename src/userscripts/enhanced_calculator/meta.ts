@@ -6,7 +6,7 @@
 // @match           https://awbw.amarriner.com/game.php*
 // @grant           none
 // @run-at          document-idle
-// @namespace       https://github.com/Ghoulean
-// @downloadURL     <todo>
-// @updateURL       <todo>
+// @namespace       https://github.com/Ghoulean/AWBWUserScript
+// @downloadURL     https://raw.githubusercontent.com/Ghoulean/AWBWUserScript/dev/dist/enhanced_calculator.bundle.user.js
+// @updateURL       https://raw.githubusercontent.com/Ghoulean/AWBWUserScript/dev/dist/enhanced_calculator.bundle.user.js
 // ==/UserScript==
