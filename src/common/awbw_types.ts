@@ -45,3 +45,34 @@ export interface AWBWBuilding {
 }
 
 export type AWBWBuildingsInfo = { [key: number]: AWBWBuilding }[]
+
+export type AWBWCalculatorSideName = "attacker" | "defender"
+
+export interface AWBWCalculatorSide {
+    co: { co_id: number; co_name: string }
+    unit: { units_id: number; units_name: string; units_ammo: number }
+    terrain: {
+        terrain_id: number
+        terrain_name: string
+        terrain_defense: number
+    }
+    power: string
+    hp: number | string
+    hasAmmo: boolean
+    cities: number | string
+    towers: number | string
+    funds: number | string
+}
+
+export interface AWBWCalculator {
+    attacker: AWBWCalculatorSide
+    defender: AWBWCalculatorSide
+    addUnitToCalc: (side: AWBWCalculatorSideName, unitId: number) => unknown
+    swapPosition: () => unknown
+    updateDamage: () => unknown
+    $watch: (
+        getter: () => unknown,
+        callback: () => void,
+        options?: { deep?: boolean },
+    ) => () => void
+}

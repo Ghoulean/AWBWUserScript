@@ -1,4 +1,4 @@
-import { CO, COPowerType, INDIRECT_UNITS } from "../common/types"
+import { AIR_UNITS, CO, COPowerType, INDIRECT_UNITS } from "../common/types"
 import { getTerrainStars } from "../common/utils"
 import { getBaseAmmolessDamage, getBaseDamage } from "./utils/base_damage_map"
 import { getAttackValue } from "./utils/get_attack_value"
@@ -74,6 +74,9 @@ export function calculateResultingHp(
 }
 
 function getDefenderTerrainStarsForCalculator(defender: CombatParticipant) {
+    if (AIR_UNITS.has(defender.unit)) {
+        return 0
+    }
     return (
         getTerrainStars(defender.terrain) *
         (defender.co == CO.Lash && defender.cop == COPowerType.SCOP ? 2 : 1)
@@ -93,4 +96,19 @@ function damage_formula(parameters: DamageFormulaParameters): number {
                         parameters.visual_hp_defender))) /
         100
     return Math.floor(Math.ceil(Math.max(0, unrounded_damage) * 20) / 20)
+}
+
+export function canCounterattack(combat: Combat): boolean {
+    if (
+        INDIRECT_UNITS.has(combat.attacker.unit) ||
+        INDIRECT_UNITS.has(combat.defender.unit)
+    ) {
+        return false
+    }
+    const defender = combat.defender
+    const base_damage = defender.ammoless
+        ? getBaseAmmolessDamage(defender.unit, combat.attacker.unit)
+        : getBaseDamage(defender.unit, combat.attacker.unit) ||
+          getBaseAmmolessDamage(defender.unit, combat.attacker.unit)
+    return base_damage > 0
 }

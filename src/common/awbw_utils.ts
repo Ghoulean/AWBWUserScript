@@ -10,6 +10,7 @@ import {
     PlayerInfo,
     PlayersInfo,
     Terrain,
+    UnitType,
 } from "./types"
 
 export function getTerrain(
@@ -40,17 +41,34 @@ function parsePlayerInfo(playerInfo: AWBWPlayerInfo): PlayerInfo {
         num: playerInfo.players_order,
         id: playerInfo.players_id,
         co: playerInfo.players_co_id,
-        cop:
-            playerInfo.players_co_power_on == "Y"
-                ? COPowerType.COP
-                : playerInfo.players_co_power_on == "S"
-                  ? COPowerType.SCOP
-                  : COPowerType.None,
+        cop: parseCOPowerOn(playerInfo.players_co_power_on),
         copMeter: playerInfo.players_co_power,
         funds: playerInfo.players_funds,
         numCities: playerInfo.cities,
         numCommTowers: playerInfo.towers,
     }
+}
+
+export function parseUnitName(name: string): UnitType | undefined {
+    const normalized = name.toLowerCase().replace(/[^a-z]/g, "")
+    if (normalized === "sub") {
+        return UnitType.Submarine
+    }
+    const key = Object.keys(UnitType).find(
+        (unitName) => unitName.toLowerCase() === normalized,
+    )
+    return key === undefined
+        ? undefined
+        : UnitType[key as keyof typeof UnitType]
+}
+
+export function parseCOPowerOn(powerOn: string): COPowerType {
+    if (powerOn == "Y") {
+        return COPowerType.COP
+    } else if (powerOn == "S") {
+        return COPowerType.SCOP
+    }
+    return COPowerType.None
 }
 
 export function convertTileIdToTerrain(id: number): Terrain {
@@ -225,7 +243,7 @@ export function convertTileIdToTerrain(id: number): Terrain {
         194: Terrain.Port,
         195: Terrain.Teleporter,
     }[id]
-    if (!tile) {
+    if (tile === undefined) {
         throw new Error(`Couldn't recognize tile id=${id}`)
     }
     return tile

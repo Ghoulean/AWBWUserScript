@@ -7,6 +7,8 @@ const ZERO_TERRAIN_STARS: Set<Terrain> = new Set([
     Terrain.Sea,
     Terrain.Shoal,
     Terrain.Pipe,
+    Terrain.Pipeseam,
+    Terrain.Teleporter,
 ])
 
 const ONE_TERRAIN_STARS: Set<Terrain> = new Set([

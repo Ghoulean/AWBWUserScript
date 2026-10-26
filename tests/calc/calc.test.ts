@@ -1,6 +1,10 @@
 import { calculateCombatDamage } from "src/calc/calc"
 import { Combat, CombatParticipant, ZERO_CHIP_DAMAGE } from "src/calc/types"
-import { damageToVisualDamageAndChip, simplifyChip, addChipDamages } from "src/calc/utils/utils"
+import {
+    damageToVisualDamageAndChip,
+    simplifyChip,
+    addChipDamages,
+} from "src/calc/utils/utils"
 import { CO, UnitType, COPowerType, Terrain } from "src/common/types"
 
 test("calculator sanity test", () => {
@@ -201,4 +205,37 @@ test("simplifyChip: chip at two visual ticks", () => {
 
 test("simplifyChip: all-zero array returns zero chip", () => {
     expect(simplifyChip([0, 0, 0])).toEqual([0, ZERO_CHIP_DAMAGE])
+})
+
+test("air units get no terrain stars", () => {
+    const md_tank: CombatParticipant = {
+        co: CO.VonBolt,
+        unit: UnitType.MdTank,
+        cop: COPowerType.None,
+        visualHp: 7,
+        terrain: Terrain.Plains,
+        numCommTowers: 0,
+        numCities: 0,
+        currentGold: 0,
+        ammoless: true,
+    }
+    const b_copter: CombatParticipant = {
+        co: CO.Kanbei,
+        unit: UnitType.BCopter,
+        cop: COPowerType.None,
+        visualHp: 10,
+        terrain: Terrain.Mountain,
+        numCommTowers: 0,
+        numCities: 0,
+        currentGold: 0,
+    }
+
+    const damage = calculateCombatDamage({
+        attacker: md_tank,
+        defender: b_copter,
+        combatModifiers: { isCounterattack: true },
+    })
+
+    expect(damage[0]).toBe(6)
+    expect(damage[damage.length - 1]).toBe(10)
 })

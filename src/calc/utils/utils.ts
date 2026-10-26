@@ -10,7 +10,11 @@ export function damageToVisualDamageAndChip(
 ): VisualDamageAndChip {
     const min_visual_damage: number = Math.floor(damage[0] / 10)
     const chips: number[] = []
-    for (let i = 0; i <= damage[damage.length - 1] - min_visual_damage * 10; i += 1) {
+    for (
+        let i = 0;
+        i <= damage[damage.length - 1] - min_visual_damage * 10;
+        i += 1
+    ) {
         chips.push(0)
     }
     for (let i = 0; i < damage.length; i += 1) {

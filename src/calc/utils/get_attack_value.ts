@@ -179,7 +179,7 @@ export function getAttackValue(
             attack += 30
         }
     }
-    if (participant.co == CO.Lash) {
+    if (participant.co == CO.Lash && !AIR_UNITS.has(participant.unit)) {
         let multiplier = participant.cop == COPowerType.SCOP ? 2 : 1
         attack += multiplier * getTerrainStars(participant.terrain) * 10
     }

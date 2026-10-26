@@ -9,7 +9,7 @@ export const ZERO_CHIP_DAMAGE = [1]
 // [2, [1, 2]] indicates 21 or 22 damage
 export type VisualDamageAndChip = [number, ChipDamage]
 
-// chip is ALWAYS represented as damage here -- so [2, [1, 2]] indicates 19 or 18 health
+// chip is ALWAYS represented as damage here -- so [2, [1, 2]] indicates 19 or 18 health (20 - 1, 20 - 2)
 export type VisualHealthAndChip = [number, ChipDamage]
 
 // visual health + likelihood
